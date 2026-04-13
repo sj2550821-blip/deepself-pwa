@@ -1,0 +1,22 @@
+{
+  "name": "Deepself",
+  "short_name": "Deepself",
+  "description": "당신의 깊은 내면의 답을 찾는 공간",
+  "start_url": "https://deepself.kr",
+  "display": "standalone",
+  "background_color": "#2d1f3d",
+  "theme_color": "#f9a84d",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
