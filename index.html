@@ -21,18 +21,19 @@ var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQ39noDOXgrGkbJn
 // 앱스스크립트 실제 콘텐츠는 script.google.com이 아니라
 // script.googleusercontent.com 샌드박스 도메인에서 렌더링되고 이 주소는 고정적이지 않아
 // 정확한 origin을 못박지 않고, 메시지 타입으로만 판별한다.
-var iframeEl = document.querySelector('iframe');
 var mediaRecorder = null, audioChunks = [], isRecording = false;
+var innerSource = null;
 
 function postToIframe(msg){
-  if (iframeEl && iframeEl.contentWindow) {
-    iframeEl.contentWindow.postMessage(msg, '*');
+  if (innerSource) {
+    innerSource.postMessage(msg, '*');
   }
 }
 
 window.addEventListener('message', function(e){
   var data = e.data || {};
   if (!data || typeof data.type !== 'string' || data.type.indexOf('deepself-mic') !== 0) return;
+  innerSource = e.source;
   if (data.type === 'deepself-mic-toggle') {
     if (!isRecording) { startRecording(); } else { stopRecording(); }
   }
